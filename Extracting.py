@@ -57,6 +57,11 @@ def read_file(filename):
     array = [int(value) for value in file if value.isdigit()]
     return array
 
+def write_file(coor_array):
+    file = open("vectors.txt", "w")
+    for xp, yp in coor_array:
+        file.write("%d %d\n"% (xp, yp)) #맨 처음 좌표는 중심점좌표
+    file.close()
 
 def center_point(bird_x, bird_y):
     cent_x = sum(bird_x) // len(bird_x)
@@ -83,16 +88,6 @@ def calculate_maxima(bird_x, bird_y):
 
 def smooth_distance(distance):
     return scipy.signal.savgol_filter(distance, 51, 3)
-
-
-def maxima_points(bird_x, bird_y, maxima):
-    x = []
-    y = []
-    for index in maxima:
-        x.append(bird_x[index])
-        y.append(bird_y[index])
-
-    return zip(x, y)
 
 
 def ncr(n, r):
@@ -206,6 +201,8 @@ def main():
     vector = assemble_vector(center, point, wings)
     coordinates = bird_coordinates(vector, bird_x, bird_y)
 
+    write_file(coordinates) # draw 전에 무슨 코드 사용하니까 draw_bird 오류남
+    
     # draw_bird_graph(bird_x, bird_y, coordinates)
     draw_bird_vector(bird_x, bird_y, coordinates)
 
