@@ -193,8 +193,8 @@ def bird_coordinates(vector, bird_x, bird_y):
 
 def main():
     theta = 2.8;
-    bird_x = read_file('chain_x.txt')
-    bird_y = read_file('chain_y.txt')
+    bird_x = read_file('gull_x.txt')
+    bird_y = read_file('gull_y.txt')
 
     maxima = calculate_maxima(bird_x, bird_y)
     # draw_bird(bird_x, bird_y)
