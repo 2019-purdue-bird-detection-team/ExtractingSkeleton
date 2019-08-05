@@ -58,6 +58,13 @@ def read_file(filename):
     return array
 
 
+def write_file(coor_array):
+    file = open("vectors.txt", "w")
+    for xp, yp in coor_array:
+        file.write("%d %d\n"% (xp, yp)) #맨 처음 좌표는 중심점좌표
+    file.close()
+
+
 def center_point(bird_x, bird_y):
     cent_x = sum(bird_x) // len(bird_x)
     cent_y = sum(bird_y) // len(bird_y)
@@ -83,16 +90,6 @@ def calculate_maxima(bird_x, bird_y):
 
 def smooth_distance(distance):
     return scipy.signal.savgol_filter(distance, 51, 3)
-
-
-def maxima_points(bird_x, bird_y, maxima):
-    x = []
-    y = []
-    for index in maxima:
-        x.append(bird_x[index])
-        y.append(bird_y[index])
-
-    return zip(x, y)
 
 
 def ncr(n, r):
@@ -193,8 +190,8 @@ def bird_coordinates(vector, bird_x, bird_y):
 
 def main():
     theta = 2.8;
-    bird_x = read_file('gull_x.txt')
-    bird_y = read_file('gull_y.txt')
+    bird_x = read_file('../data/chain_x.txt')
+    bird_y = read_file('../data/chain_y.txt')
 
     maxima = calculate_maxima(bird_x, bird_y)
     # draw_bird(bird_x, bird_y)
@@ -206,6 +203,8 @@ def main():
     vector = assemble_vector(center, point, wings)
     coordinates = bird_coordinates(vector, bird_x, bird_y)
 
+#    write_file(coordinates) # draw 전에 무슨 코드 사용하니까 draw_bird 오류남
+    
     # draw_bird_graph(bird_x, bird_y, coordinates)
     draw_bird_vector(bird_x, bird_y, coordinates)
 
