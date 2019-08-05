@@ -1,7 +1,7 @@
 import math
 
 def read_vectors():
-     file = open("vectors4.txt").read().split()
+     file = open("vectors.txt").read().split()
      c_x, c_y= (float)(file[0]), (float)(file[1])
      h_x, h_y= (float)(file[2]), (float)(file[3]) #머리
      t_x, t_y= (float)(file[4]), (float)(file[5]) #꼬리
@@ -12,7 +12,7 @@ def read_vectors():
      vec1= (w1_x-c_x, w1_y-c_y) #날개벡터 1
      vec2= (w2_x-c_x, w2_y-c_y) #날개벡터 2
 
-     if (vec==(0,0)): #정면일 경우 처리
+     if (vec==(0,0)): #for front-rear frame
           read_front_vectors(vec1, vec2)
           return
      
@@ -24,19 +24,19 @@ def read_vectors():
      print(theta1, theta2)
 
      if (theta1<180 and theta2<180):
-          print("flying pose 1")
+          pose=A
      elif (theta1>180 and theta2>180):
-          print("flying pose 2")
+          pose=B
      elif (theta1==0 and theta2==0):
-          print("flying pose 4")
+          pose=D
      else:
-          print("flying pose 3")
+          pose=C
 
 def read_front_vectors(vec1, vec2):
      if (vec1[1]>0):
-          print("flying pose 1")
+          pose=A
      else:
-          print("flying pose2")
+          pose=B
 
 def CalAngleBetweenTwoPoints(h, w, isClockWise):
      rotated= [0,0] #h벡터를 90도 회전시킬 것임
@@ -49,11 +49,11 @@ def CalAngleBetweenTwoPoints(h, w, isClockWise):
           rotated[1]= h[0]
 
      hVecsize= math.sqrt(h[0]**2 + h[1]**2)
-     wVecsize= math.sqrt(w[0]**2+ w[1]**2)
+     wVecsize= math.sqrt(w[0]**2 + w[1]**2)
      
      fAng= math.degrees(math.acos((rotated[0]*w[0] + rotated[1]*w[1]) / (hVecsize * wVecsize)))
 
-     if (fAng>90): #True이면 h벡터와 w벡터 사이의 각도가 180보다 크다는 의미
+     if (fAng>90): #if True, it means the angle between vector h and w is bigger than 180 
           return 360- math.degrees(math.acos((h[0]*w[0] + h[1]*w[1]) / (hVecsize * wVecsize)))
      else:
           return math.degrees(math.acos((h[0]*w[0] + h[1]*w[1]) / (hVecsize * wVecsize)))
