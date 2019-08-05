@@ -24,22 +24,22 @@ def read_vectors():
      print(theta1, theta2)
 
      if (theta1<180 and theta2<180):
-          pose=A
+          pose=0
      elif (theta1>180 and theta2>180):
-          pose=B
+          pose=1
      elif (theta1==0 and theta2==0):
-          pose=D
+          pose=3
      else:
-          pose=C
-
+          pose=2
+          
 def read_front_vectors(vec1, vec2):
      if (vec1[1]>0):
-          pose=A
+          pose=0
      else:
-          pose=B
+          pose=1
 
 def CalAngleBetweenTwoPoints(h, w, isClockWise):
-     rotated= [0,0] #h벡터를 90도 회전시킬 것임
+     rotated= [0,0] #h vector will be rotated 90 degree
 
      if (isClockWise): #h벡터로부터 시계방향 회전 (머리-중심-꼬리 사진)
           rotated[0]= h[1]
