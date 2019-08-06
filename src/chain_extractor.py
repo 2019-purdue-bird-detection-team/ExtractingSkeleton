@@ -155,12 +155,24 @@ def calculate_coordinates(chain, coordinates):
             return calculate_coordinates(chain, coordinates)
 
         coordinates.append(Point(x, y))
-        # print("x: %d, y: %d" % (x, y), end=' ')
     return coordinates
 
 
+def get_coordinates():
+    return calculate_coordinates(extract_chains(), Coordinate()).coordinates
+
+
+def rotate_coordinates(coordinates, index):
+    new_coordinates = []
+    for i in range(index, len(coordinates)):
+        new_coordinates.append(coordinates[i])
+    for i in range(index):
+        new_coordinates.append(coordinates[i])
+    return new_coordinates
+
+
 def main():
-    coordinates = calculate_coordinates(extract_chains(), Coordinate())
+    coordinates = calculate_coordinates(extract_chains(), Coordinate()).coordinates
 
 
 if __name__ == '__main__':
