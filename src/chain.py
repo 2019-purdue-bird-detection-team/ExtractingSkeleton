@@ -6,6 +6,7 @@ class Chain:
         self.chains = []
         self.point = Point(0, 0)
         self.isReturning = False
+        self.isEnd = False
 
     def set_point(self, point):
         self.point = point
