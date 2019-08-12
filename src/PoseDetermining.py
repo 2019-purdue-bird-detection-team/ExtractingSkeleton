@@ -1,24 +1,23 @@
 import math
 import src.vector_extractor as v_e
-
+import test
 
 def read_vectors():
 
-     theta = 2.96706
-     v = v_e.get_vectors(theta)
+     theta =-3.0979594
+     v = v_e.get_vectors("../image/black.png", theta)
      center = v.center
      head = v.head
      tail = v.tail
-     wing1 = v.wings[0]
-     wing2 = v.wings[1]
+     wing1 = v.wing1
+     wing2 = v.wing2
 
      vec= (head.x-center.x, head.y-center.y) #기준벡터: 머리-중심
      vec1= (wing1.x-center.x, wing1.y-center.y) #날개벡터 1
      vec2= (wing2.x-center.x, wing2.y-center.y) #날개벡터 2
 
      if (vec==(0,0)): #for front-rear frame
-          read_front_vectors(vec1, vec2)
-          return
+          return read_front_vectors(vec1, vec2)
      
      isClockWise = 1 #시계방향
      if (head.x > tail.x): isClockWise= 0 #반시계방향
@@ -28,22 +27,22 @@ def read_vectors():
      print(theta1, theta2)
 
      if (theta1<180 and theta2<180):
-          pose=0
+          return 0
      elif (theta1>180 and theta2>180):
-          pose=1
+          return 1
      elif (theta1==0 and theta2==0):
-          pose=3
+          return 3
      else:
-          pose=2
+          return 2
 
 
 def read_front_vectors(vec1, vec2):
      if (vec1[1]>0):
-          pose=0
+          return 0
      elif (vec1[1]<0):
-          pose=1
+          return 1
      else:
-          pose=2
+          return 2
 
 def CalAngleBetweenTwoPoints(h, w, isClockWise):
      rotated= [0,0] #h vector will be rotated 90 degree
@@ -65,4 +64,5 @@ def CalAngleBetweenTwoPoints(h, w, isClockWise):
      else:
           return math.degrees(math.acos((h[0]*w[0] + h[1]*w[1]) / (hVecsize * wVecsize)))
      
-read_vectors()
+pose = read_vectors()
+print("flying pose = " , pose)
