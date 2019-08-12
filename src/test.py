@@ -1,3 +1,6 @@
+import os
+import sys
+import src.vector_extractor as vec
 import matplotlib.pyplot as plt
 
 
@@ -28,7 +31,7 @@ def test_drawing(bird, vectors):
     plt.scatter(vectors.wing2.x, vectors.wing2.y, color='k', label='wing2')
     plt.xlabel('x axis')
     plt.ylabel('y axis')
-    plt.legend(loc='upper left')
+    plt.legend(loc='upper right')
     plt.show()
 
 
@@ -40,3 +43,23 @@ def test_distances(bird, distances, filtered_distances):
     plt.ylabel('y axis')
     plt.legend(loc='upper right')
     plt.show()
+
+
+def main():
+    sys.setrecursionlimit(2000)
+
+    theta = 2.87979
+    path = "../image/crows"
+    count = len([name for name in os.listdir(path) if os.path.isfile(os.path.join(path, name))])
+
+    for i in range(count):
+        if i == 2 or i == 13 or i == 14:
+            continue
+        print("crow%d.png 시도" % (i + 1), end='')
+        filename = path + "/crow" + str(i + 1) + ".png"
+        vector = vec.get_vectors(filename, theta)
+        print(", 완료")
+
+
+if __name__ == '__main__':
+    main()
