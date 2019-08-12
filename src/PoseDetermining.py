@@ -5,7 +5,7 @@ import test
 def read_vectors():
 
      theta =-3.0979594
-     v = v_e.get_vectors("../image/black.png",theta)
+     v = v_e.get_vectors("../image/black.png", theta)
      center = v.center
      head = v.head
      tail = v.tail
