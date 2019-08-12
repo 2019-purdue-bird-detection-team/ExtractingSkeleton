@@ -1,4 +1,4 @@
-from frame import Point
+from src.frame import Point
 
 
 class Chain:

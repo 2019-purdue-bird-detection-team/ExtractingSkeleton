@@ -1,13 +1,6 @@
-<<<<<<< HEAD
-#%%
-from frame import Frame
-from image import ImageConverter
-from chain import Chain, Coordinate, Point
-=======
 from src.chain import Chain, Coordinate, Point
 from src.frame import Frame
 from src.image import ImageConverter
->>>>>>> d83fefb2dfe976e6cfc7ab04e440e93f1af7d123
 
 
 def is_neighbor(frame, point, chain, number):

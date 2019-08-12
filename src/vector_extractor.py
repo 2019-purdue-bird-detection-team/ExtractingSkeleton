@@ -1,13 +1,10 @@
-
-#%%
-
 import operator as op
 from functools import reduce
-from chain import Point
+from src.chain import Point
 import math
 import scipy.signal
 import peakutils
-import chain_extractor as ch
+import src.chain_extractor as ch
 import test as test
 
 class Theta:
@@ -141,7 +138,7 @@ def extract_wings(coordinates, slope, maximas):
 
 
 def get_vectors(filename, theta):
-    bird = chain.get_coordinates(filename)
+    bird = ch.get_coordinates(filename)
     geographical_center = Calculator.center_point(bird)
     geographical_maximas = calculate_maximas(bird, geographical_center)
 

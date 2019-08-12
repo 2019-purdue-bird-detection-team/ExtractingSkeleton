@@ -1,4 +1,4 @@
-import constant
+import src.constant as constant
 import cv2
 import numpy as np
 
