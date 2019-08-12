@@ -1,5 +1,5 @@
 import math
-import src.vector_extractor as v_e
+import vector_extractor as v_e
 import test
 
 def read_vectors():
@@ -64,5 +64,3 @@ def CalAngleBetweenTwoPoints(h, w, isClockWise):
      else:
           return math.degrees(math.acos((h[0]*w[0] + h[1]*w[1]) / (hVecsize * wVecsize)))
      
-pose = read_vectors()
-print("flying pose = " , pose)
