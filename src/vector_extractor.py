@@ -1,12 +1,14 @@
+
+#%%
+
 import operator as op
 from functools import reduce
-from src.chain import Point
+from chain import Point
 import math
 import scipy.signal
 import peakutils
-import src.chain_extractor as chain
-import src.test as test
-
+import chain_extractor as ch
+import test as test
 
 class Theta:
     def __init__(self, radian, head, tail):
@@ -131,12 +133,12 @@ def extract_wings(coordinates, slope, maximas):
 
 
 def get_vectors(theta):
-    bird = chain.get_coordinates()
+    bird = ch.get_coordinates()
     geographical_center = Calculator.center_point(bird)
     geographical_maximas = calculate_maximas(bird, geographical_center)
 
     # bird 재조정
-    bird = chain.rotate_coordinates(bird, geographical_maximas[0] // 2)
+    bird = ch.rotate_coordinates(bird, geographical_maximas[0] // 2)
     geographical_center = Calculator.center_point(bird)
     geographical_maximas = calculate_maximas(bird, geographical_center)
 

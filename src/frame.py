@@ -1,3 +1,4 @@
+# 새의 시작점, 높이, 넓이 초기화, 계산
 class Size:
     def __init__(self, width, height):
         self.width = width
