@@ -168,9 +168,7 @@ def get_vectors(filename, theta):
     # 벡터화
     vector = Vector(bird_center, bird_head, bird_tail, bird_wings)
 
-    #test
-    # test.test_maximas(bird, geographical_maximas)
-    # test.test_drawing(bird, vector)
+    test.test_drawing(bird, vector)
 
     return vector
 
