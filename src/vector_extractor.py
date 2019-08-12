@@ -29,7 +29,10 @@ class Vector:
         self.head = head
         self.tail = tail
         self.wing1 = wings[0]
-        self.wing2 = wings[1]
+        if len(wings) < 2:
+            self.wing2 = wings[0]
+        else:
+            self.wing2 = wings[1]
 
     def get_coordinates(self):
         coordinates = []
@@ -111,6 +114,11 @@ def calculate_slope(theta, coordinates, maximas):
         if difference > abs(theta - radian.radian):
             difference = abs(theta - radian.radian)
             slope = radian
+
+    # difference가 theta와 지나치게 차이나는 경우 +- 5
+    # if difference > theta + math.degrees(5) or difference < theta - math.degrees(5):
+
+
     return slope
 
 
@@ -132,15 +140,25 @@ def extract_wings(coordinates, slope, maximas):
     return wings
 
 
-def get_vectors(theta):
-    bird = ch.get_coordinates()
+def get_vectors(filename, theta):
+    bird = chain.get_coordinates(filename)
     geographical_center = Calculator.center_point(bird)
     geographical_maximas = calculate_maximas(bird, geographical_center)
+
+    if len(geographical_maximas) < 1:
+        null_point = Point(-1, -1)
+        null_wings = [null_point, null_point]
+        return Vector(null_point, null_point, null_point, null_wings)
 
     # bird 재조정
     bird = ch.rotate_coordinates(bird, geographical_maximas[0] // 2)
     geographical_center = Calculator.center_point(bird)
     geographical_maximas = calculate_maximas(bird, geographical_center)
+
+    if len(geographical_maximas) < 2:
+        null_point = Point(-1, -1)
+        null_wings = [null_point, null_point]
+        return Vector(null_point, null_point, null_point, null_wings)
 
     # 새의 각도, 중심
     bird_slope = calculate_slope(theta, bird, geographical_maximas)
@@ -151,15 +169,17 @@ def get_vectors(theta):
 
     # 벡터화
     vector = Vector(bird_center, bird_head, bird_tail, bird_wings)
-    vector_coordinates = vector.get_coordinates()
-    return vector_coordinates
+
+    #test
+    # test.test_maximas(bird, geographical_maximas)
+    # test.test_drawing(bird, vector)
+
+    return vector
 
 
 def main():
-    theta = -2.61799
-    vectors = get_vectors(theta)
-    for vector in vectors:
-        print(vector.x, vector.y)
+    theta = 2.87979
+    vector = get_vectors("../image/crows/crow1.png", theta)
 
 
 if __name__ == "__main__":
