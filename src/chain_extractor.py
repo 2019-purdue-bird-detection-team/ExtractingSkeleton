@@ -1,6 +1,7 @@
-from src.frame import Frame
-from src.image import ImageConverter
-from src.chain import Chain, Coordinate, Point
+#%%
+from frame import Frame
+from image import ImageConverter
+from chain import Chain, Coordinate, Point
 
 
 def find_neighbor_border(frame, point, chain):
@@ -115,7 +116,7 @@ def is_unvisited(visited, point):
 
 
 def extract_chains():
-    image = ImageConverter(input("Filename: "))
+    image = ImageConverter("crow1.png")  # input("Filename: ")
     frame = Frame(image)
     chain = find_neighbor_border(frame, frame.starting_point, Chain())
     return hang_chain(frame, chain)
@@ -172,8 +173,11 @@ def rotate_coordinates(coordinates, index):
 
 
 def main():
-    coordinates = calculate_coordinates(extract_chains(), Coordinate()).coordinates
+    coordinats = calculate_coordinates(extract_chains(), Coordinate()).coordinates
 
 
 if __name__ == '__main__':
     main()
+
+
+#%%
