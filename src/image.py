@@ -1,18 +1,10 @@
 from PIL import Image
 
 
-def convert_into_rgb(pixel):
-    rgb = pixel[0] << 16 | pixel[1] << 8 | pixel[2] | pixel[3] << 24
-    if rgb >= 1 << 31:
-        rgb -= 1 << 32
-    return rgb
-
-
-def convert_into_binary(pixel):
-    if pixel != -1:
-        return 1
-    else:
+def convert_rgb(pixel):
+    if pixel[0] == 0 and pixel[1] == 0 and pixel[2] == 0:
         return 0
+    return 1
 
 
 class ImageConverter:
@@ -28,5 +20,6 @@ class ImageConverter:
         for row in range(0, self.height):
             for column in range(0, self.width):
                 self.pixels[row][column] = self.image.getpixel((column, row))
-                self.pixels[row][column] = convert_into_rgb(self.pixels[row][column])
-                self.pixels[row][column] = convert_into_binary(self.pixels[row][column])
+                self.pixels[row][column] = convert_rgb(self.pixels[row][column])
+                # print(self.pixels[row][column], end=' ')
+            # print()
