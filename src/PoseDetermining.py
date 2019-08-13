@@ -64,6 +64,12 @@ def CalAngleBetweenTwoPoints(h, w, isClockWise):
           return 360- math.degrees(math.acos((h[0]*w[0] + h[1]*w[1]) / (hVecsize * wVecsize)))
      else:
           return math.degrees(math.acos((h[0]*w[0] + h[1]*w[1]) / (hVecsize * wVecsize)))
-     
-#pose = read_vectors("../test/birds21.png", 0)
-#print("flying pose = " , pose)
+
+
+def main():
+     pose = read_vectors("../image/crow90.png", 2.96706)
+     print("flying pose = " , pose)
+
+
+if __name__ == '__main__':
+     main()

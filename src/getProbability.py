@@ -1,6 +1,7 @@
 import src.constant as constant
 import cv2
 import numpy as np
+import src.PoseDetermining as pd
 
 poses = []
 top = 1  # poses 배열 index
@@ -8,7 +9,7 @@ Pj = 1
 P_MAX = constant.Probability[0][2]*constant.Probability[2][0]*constant.Probability[0][2]*constant.Probability[2][0]
 
 while True:
-    new_pose = 0    ##############들어오는 숫자
+    new_pose = pd.read_vectors()    ##############들어오는 숫자
     constant.frame_cnt += 1  # cnt 증가
     if (constant.frame_cnt > constant.frame_limit) and (top != 4):  # 배열 다 안 찼는데 frame 개수 초과
         print("not","bird!")
