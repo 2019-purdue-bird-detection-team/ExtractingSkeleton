@@ -2,10 +2,11 @@ import math
 import src.vector_extractor as v_e
 import test
 
-def read_vectors():
 
-     theta =-3.0979594
-     v = v_e.get_vectors("../image/black.png", theta)
+def read_vectors(file, theta):
+
+     #theta = 2.96706
+     v = v_e.get_vectors(file, theta)
      center = v.center
      head = v.head
      tail = v.tail
@@ -64,5 +65,5 @@ def CalAngleBetweenTwoPoints(h, w, isClockWise):
      else:
           return math.degrees(math.acos((h[0]*w[0] + h[1]*w[1]) / (hVecsize * wVecsize)))
      
-pose = read_vectors()
-print("flying pose = " , pose)
+#pose = read_vectors("../test/birds21.png", 0)
+#print("flying pose = " , pose)

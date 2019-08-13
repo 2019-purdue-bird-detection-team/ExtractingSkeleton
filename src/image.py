@@ -9,7 +9,8 @@ def convert_rgb(pixel):
 
 class ImageConverter:
     def __init__(self, filename):
-        path = "../image/crows/"
+#       path = "../image/crows/"
+        path = ""
         self.image = Image.open(path + filename)
         self.width, self.height = self.image.size
         self.pixels = [[0] * self.width for row in range(self.height)]

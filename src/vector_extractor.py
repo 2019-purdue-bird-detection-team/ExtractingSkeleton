@@ -167,7 +167,8 @@ def get_vectors(filename, theta):
     # 벡터화
     vector = Vector(bird_center, bird_head, bird_tail, bird_wings)
 
-    test.test_drawing(bird, vector)
+    # 테스트
+    #test.test_drawing(bird, vector)
 
     return vector
 
