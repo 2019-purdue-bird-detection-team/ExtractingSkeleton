@@ -52,8 +52,12 @@ def main():
     path = "../image/crows"
     count = len([name for name in os.listdir(path) if os.path.isfile(os.path.join(path, name))])
 
-    for i in range(count):
-        if i == 2 or i == 13 or i == 14:
+    for i in range(61, count):
+        if i == 2 or i == 7 or i == 13 or i == 14 or i == 20 or i == 26 or i == 27 or i == 37 or i == 40 or i == 42 or i == 47 or i == 52 \
+                or i == 53 or i == 54 or i == 55 or i == 57 or i == 61\
+                or i == 64 or i == 69 or i == 72 or i == 73 or i == 79 or i == 83 or i == 85 or i == 96 or i == 98 or i == 99\
+                or i == 109 or i == 111 or i == 113 or i == 115 or i == 130 or i == 146 or i == 153 or i == 154 or i == 184 or i == 185\
+                or i == 195 or i == 212 or i == 216 or i == 218 or i == 220 or i == 233:
             continue
         print("crow%d.png 시도" % (i + 1), end='')
         filename = path + "/crow" + str(i + 1) + ".png"
