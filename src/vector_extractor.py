@@ -4,9 +4,8 @@ from src.chain import Point
 import math
 import scipy.signal
 import peakutils
-import src.chain_extractor as chain
-import src.test as test
-
+import src.chain_extractor as ch
+import test as test
 
 class Theta:
     def __init__(self, radian, head, tail):
@@ -139,7 +138,7 @@ def extract_wings(coordinates, slope, maximas):
 
 
 def get_vectors(filename, theta):
-    bird = chain.get_coordinates(filename)
+    bird = ch.get_coordinates(filename)
     geographical_center = Calculator.center_point(bird)
     geographical_maximas = calculate_maximas(bird, geographical_center)
 
@@ -149,7 +148,7 @@ def get_vectors(filename, theta):
         return Vector(null_point, null_point, null_point, null_wings)
 
     # bird 재조정
-    bird = chain.rotate_coordinates(bird, geographical_maximas[0] // 2)
+    bird = ch.rotate_coordinates(bird, geographical_maximas[0] // 2)
     geographical_center = Calculator.center_point(bird)
     geographical_maximas = calculate_maximas(bird, geographical_center)
 
@@ -168,9 +167,8 @@ def get_vectors(filename, theta):
     # 벡터화
     vector = Vector(bird_center, bird_head, bird_tail, bird_wings)
 
-    #test
-    # test.test_maximas(bird, geographical_maximas)
-    # test.test_drawing(bird, vector)
+    # 테스트
+    #test.test_drawing(bird, vector)
 
     return vector
 

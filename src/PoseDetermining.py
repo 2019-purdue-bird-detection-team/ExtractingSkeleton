@@ -1,45 +1,49 @@
 import math
+import src.vector_extractor as v_e
+import test
 
 
-def read_vectors():
-     file = open("../data/vectors.txt").read().split()
-     c_x, c_y= (float)(file[0]), (float)(file[1])
-     h_x, h_y= (float)(file[2]), (float)(file[3]) #머리
-     t_x, t_y= (float)(file[4]), (float)(file[5]) #꼬리
-     w1_x, w1_y= (float)(file[6]), (float)(file[7])
-     w2_x, w2_y= (float)(file[8]), (float)(file[9])
+def read_vectors(file, theta):
 
-     vec= (h_x-c_x, h_y-c_y) #기준벡터: 머리-중심
-     vec1= (w1_x-c_x, w1_y-c_y) #날개벡터 1
-     vec2= (w2_x-c_x, w2_y-c_y) #날개벡터 2
+     #theta = 2.96706
+     v = v_e.get_vectors(file, theta)
+     center = v.center
+     head = v.head
+     tail = v.tail
+     wing1 = v.wing1
+     wing2 = v.wing2
+
+     vec= (head.x-center.x, head.y-center.y) #기준벡터: 머리-중심
+     vec1= (wing1.x-center.x, wing1.y-center.y) #날개벡터 1
+     vec2= (wing2.x-center.x, wing2.y-center.y) #날개벡터 2
 
      if (vec==(0,0)): #for front-rear frame
-          read_front_vectors(vec1, vec2)
-          return
+          return read_front_vectors(vec1, vec2)
      
      isClockWise = 1 #시계방향
-     if (h_x > t_x): isClockWise= 0 #반시계방향
+     if (head.x > tail.x): isClockWise= 0 #반시계방향
      
      theta1= CalAngleBetweenTwoPoints(vec, vec1, isClockWise)
      theta2= CalAngleBetweenTwoPoints(vec, vec2, isClockWise)
      print(theta1, theta2)
 
      if (theta1<180 and theta2<180):
-          pose=0
+          return 0
      elif (theta1>180 and theta2>180):
-          pose=1
+          return 1
      elif (theta1==0 and theta2==0):
-          pose=3
+          return 3
      else:
-          pose=2
+          return 2
 
 
 def read_front_vectors(vec1, vec2):
      if (vec1[1]>0):
-          pose=0
+          return 0
+     elif (vec1[1]<0):
+          return 1
      else:
-          pose=1
-
+          return 2
 
 def CalAngleBetweenTwoPoints(h, w, isClockWise):
      rotated= [0,0] #h vector will be rotated 90 degree
@@ -60,5 +64,12 @@ def CalAngleBetweenTwoPoints(h, w, isClockWise):
           return 360- math.degrees(math.acos((h[0]*w[0] + h[1]*w[1]) / (hVecsize * wVecsize)))
      else:
           return math.degrees(math.acos((h[0]*w[0] + h[1]*w[1]) / (hVecsize * wVecsize)))
-     
-read_vectors()
+
+
+def main():
+     pose = read_vectors("../image/crow90.png", 2.96706)
+     print("flying pose = " , pose)
+
+
+if __name__ == '__main__':
+     main()

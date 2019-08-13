@@ -149,7 +149,6 @@ def hang_chain(frame, chain):
         print("s", end=' ')
         chain.return_index = chain.chains[len(chain.chains) - 1]
 
-    return hang_chain(frame, chain)
 
 
 def calculate_coordinates(chain, coordinates):
@@ -215,3 +214,6 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
+#%%

@@ -9,7 +9,8 @@ def convert_rgb(pixel):
 
 class ImageConverter:
     def __init__(self, filename):
-        path = "../image/"
+#       path = "../image/crows/"
+        path = ""
         self.image = Image.open(path + filename)
         self.width, self.height = self.image.size
         self.pixels = [[0] * self.width for row in range(self.height)]
@@ -21,5 +22,6 @@ class ImageConverter:
             for column in range(0, self.width):
                 self.pixels[row][column] = self.image.getpixel((column, row))
                 self.pixels[row][column] = convert_rgb(self.pixels[row][column])
+          #     self.pixels[row][column] = convert_into_binary(self.pixels[row][column])
                 # print(self.pixels[row][column], end=' ')
             # print()
