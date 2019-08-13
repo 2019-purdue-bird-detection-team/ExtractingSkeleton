@@ -37,11 +37,11 @@ def is_neighbor(frame, point, chain, number):
             chain.isReturning = False
             chain.return_count = 0
             return True
-        prev = chain.chains[chain.return_index - chain.return_count]
-        next = (prev + 4) % 8
+        # prev = chain.chains[chain.return_index - chain.return_count]
+        # next = (prev + 4) % 8
         # print("[%d %d %d]" % (prev, next, number), end=' ')
-        if number == next:
-            return True
+        # if number == next:
+        #     return True
     return False
 
 
@@ -94,6 +94,14 @@ def find_neighbor_border(frame, point, chain):
         print("7", end=' ')
         return chain
 
+    if chain.isReturning is True:
+        prev = chain.chains[chain.return_index - chain.return_count]
+        next = (prev + 4) % 8
+        chain.add_chain(next, point.add(next))
+        print("%d" % next, end=' ')
+        chain.return_count += 1
+        return chain
+
     # no neighbor
     chain.set_point(point)
     return chain
@@ -132,13 +140,14 @@ def hang_chain(frame, chain):
         return chain
 
     if chain.isReturning is True:
-        chain.return_count += 1
+        # chain.return_count += 1
         return hang_chain(frame, chain)
 
     # 새로 추가한 체인이 막다른 체인인지 검사
     if is_dead_end(frame, chain.point) is True:
         chain.isReturning = True
-        chain.returning_index = chain.chains[len(chain.chains) - 1]
+        print("s", end=' ')
+        chain.return_index = chain.chains[len(chain.chains) - 1]
 
     return hang_chain(frame, chain)
 
@@ -201,7 +210,7 @@ def rotate_coordinates(coordinates, index):
 
 
 def main():
-    chains = extract_chains("../image/crows/crow20.png"), Coordinate()
+    chains = extract_chains("../image/crows/crow7.png"), Coordinate()
 
 
 if __name__ == '__main__':
