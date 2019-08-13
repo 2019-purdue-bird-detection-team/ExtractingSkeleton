@@ -52,7 +52,7 @@ def main():
     path = "../image/crows"
     count = len([name for name in os.listdir(path) if os.path.isfile(os.path.join(path, name))])
 
-    for i in range(61, count):
+    for i in range(count):
         if i == 2 or i == 7 or i == 13 or i == 14 or i == 20 or i == 26 or i == 27 or i == 37 or i == 40 or i == 42 or i == 47 or i == 52 \
                 or i == 53 or i == 54 or i == 55 or i == 57 or i == 61\
                 or i == 64 or i == 69 or i == 72 or i == 73 or i == 79 or i == 83 or i == 85 or i == 96 or i == 98 or i == 99\

@@ -148,7 +148,7 @@ def hang_chain(frame, chain):
         chain.isReturning = True
         print("s", end=' ')
         chain.return_index = chain.chains[len(chain.chains) - 1]
-
+    return hang_chain(frame, chain)
 
 
 def calculate_coordinates(chain, coordinates):
